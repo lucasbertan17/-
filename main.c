@@ -4,6 +4,14 @@
 volatile unsigned int *UART0DR = (unsigned int *)0x101f1000;
 volatile unsigned int *UART0FR = (unsigned int *)0x101f1018;
 
+struct braingdf {
+    int current_pos;
+    int code_size;
+    char *current_char;
+    char *program;
+    int lista_breakpoints[MAX_MEMORY_SIZE];
+}
+
 void uart_putchar_2(char c) {
     while (*UART0FR & (1 << 5)); // espera até que TXFF == 0
     *UART0DR = c;
@@ -21,7 +29,11 @@ void uart_puts_2(const char *s) {
 // void print_mem(char *string, int *init, int *end);
 // void print_string(char *c);
 
+// **********************************
+// COLOCAR MEMORIA NO STRUCT
+// **********************************
 static char memory[MAX_MEMORY_SIZE] = {0};
+
 int pos_memoria = 0;
 void main() {
     // const char *program = "++++++++++++++++++++++++++++++++++."; // #
@@ -55,7 +67,7 @@ void main() {
                         if (program[i] == ']') loop++;
                         else if (program[i] == '[') loop--;
                     }
-                    i--; // desfaz incremento do for
+                    i--;
                 }
                 break;
         }
