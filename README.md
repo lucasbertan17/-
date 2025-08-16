@@ -73,4 +73,4 @@ qemu-system-arm -M versatilepb -nographic -kernel kernel.bin
 Após o início, o programa exibirá um menu de comandos, permitindo interações no modo normal (carregar e executar programas Brainfuck) ou no modo de depuração.
 
 
-O vídeo de demonstração do projeto está no seguinte link: 
+O vídeo de demonstração do projeto está no seguinte link:  https://www.youtube.com/watch?v=rKB53BPnYiQ
